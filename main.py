@@ -70,7 +70,8 @@ def floyd_algorithm():
 
 
 @app.post("/Números-duplicados")
-def find_duplicate(nums: List[int]):
+def find_duplicate(nums: str):
+    nums = list(map(int, nums.split(',')))
     tortoise = hare = nums[0]
     while True:
         tortoise = nums[tortoise]
@@ -83,4 +84,4 @@ def find_duplicate(nums: List[int]):
         tortoise = nums[tortoise]
         hare = nums[hare]
 
-    return {"duplicate": hare} # This will print 2
+    return {"duplicate": hare}
