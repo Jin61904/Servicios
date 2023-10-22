@@ -40,13 +40,14 @@ def detectar_ciclo(lista):
         liebre = liebre.siguiente.siguiente
 
         if tortuga == liebre:
-            return True
+            return tortuga
 
-    return False
+    return None
 
-@app.post("/Floyd-algorithm")
-def floyd_algorithm(valor: int):
-    nodo1 = Nodo(valor)
+@app.get("/Floyd-algorithm")
+def floyd_algorithm():
+
+    nodo1 = Nodo(1)
     nodo2 = Nodo(2)
     nodo3 = Nodo(3)
     nodo4 = Nodo(4)
@@ -58,8 +59,11 @@ def floyd_algorithm(valor: int):
     nodo4.siguiente = nodo5
     nodo5.siguiente = nodo2
 
-    tiene_ciclo = detectar_ciclo(nodo1)
-    return {"tiene_ciclo": tiene_ciclo}
+    nodo_ciclo = detectar_ciclo(nodo1)
+    if nodo_ciclo:
+        return {"tiene_ciclo": True, "valor_nodo_ciclo": nodo_ciclo.valor, "nodo_ciclo": str(nodo_ciclo)}
+    else:
+        return {"tiene_ciclo": False}
 
 #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
 
