@@ -22,7 +22,6 @@ def indices_invertidos(palabra: dict):
                 cache[word] = [mook.my_document[index]]
     return cache.get(palabra ["palabra"], "No se encontró")
 
-@app.post("/Floyd-algorithm")
 
 class Nodo():
     def __init__(self, valor):
@@ -46,8 +45,8 @@ def detectar_ciclo(lista):
     return False
 
 @app.post("/Floyd-algorithm")
-def floyd_algorithm():
-    nodo1 = Nodo(1)
+def floyd_algorithm(valor: int):
+    nodo1 = Nodo(valor)
     nodo2 = Nodo(2)
     nodo3 = Nodo(3)
     nodo4 = Nodo(4)
@@ -62,6 +61,6 @@ def floyd_algorithm():
     tiene_ciclo = detectar_ciclo(nodo1)
     return {"tiene_ciclo": tiene_ciclo}
 
-#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
+#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
 
 #@app.post("/BusquedaRepetidos"
