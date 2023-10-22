@@ -22,11 +22,97 @@ def indices_invertidos(palabra: dict):
                 cache[word] = [mook.my_document[index]]
     return cache.get(palabra ["palabra"], "No se encontró")
 
-#    indices = cache.get(palabra["palabra"])
-#    if indices is not None:
-#       resultado = []
-#       for indice in indices:
-#           resultado.append(mook.my_document[indice])
-#       return resultado
-#   else:
-#       return "No se encontró"
+@app.post("/Floyd-algorithm")
+
+class Nodo():
+  def __init__(self, valor):
+    self.valor = valor
+    self.siguiente = None
+
+  def __repr__(self) -> str:
+    return f"<nodo {self.valor}>"
+
+def detectar_ciclo(lista):
+  class NodoInterno(Nodo):
+    pass
+
+  tortuga = lista
+  liebre = lista
+
+  while liebre and liebre.siguiente and tortuga:
+    tortuga = tortuga.siguiente
+    liebre = liebre.siguiente.siguiente
+
+    if tortuga == liebre:
+      print(tortuga, liebre)
+      break
+
+  liebre = lista
+
+  while liebre != tortuga:
+    liebre = liebre.siguiente
+    tortuga = tortuga.siguiente
+    print(tortuga, liebre)
+
+  return False
+
+nodo1 = Nodo(1)
+nodo2 = Nodo(2)
+nodo3 = Nodo(3)
+nodo4 = Nodo(4)
+nodo5 = Nodo(5)
+
+nodo1.siguiente = nodo2
+nodo2.siguiente = nodo3
+nodo3.siguiente = nodo4
+nodo4.siguiente = nodo5
+nodo5.siguiente = nodo2
+
+detectar_ciclo(nodo1)
+class Nodo():
+  def __init__(self, valor):
+    self.valor = valor
+    self.siguiente = None
+
+  def __repr__(self) -> str:
+    return f"<nodo {self.valor}>"
+
+def detectar_ciclo(lista):
+  class NodoInterno(Nodo):
+    pass
+
+  tortuga = lista
+  liebre = lista
+
+  while liebre and liebre.siguiente and tortuga:
+    tortuga = tortuga.siguiente
+    liebre = liebre.siguiente.siguiente
+
+    if tortuga == liebre:
+      print(tortuga, liebre)
+      break
+
+  liebre = lista
+
+  while liebre != tortuga:
+    liebre = liebre.siguiente
+    tortuga = tortuga.siguiente
+    print(tortuga, liebre)
+
+  return False
+
+nodo1 = Nodo(1)
+nodo2 = Nodo(2)
+nodo3 = Nodo(3)
+nodo4 = Nodo(4)
+nodo5 = Nodo(5)
+
+nodo1.siguiente = nodo2
+nodo2.siguiente = nodo3
+nodo3.siguiente = nodo4
+nodo4.siguiente = nodo5
+nodo5.siguiente = nodo2
+
+detectar_ciclo(nodo1)
+
+#@app.post("/BusquedaRepetidos")
