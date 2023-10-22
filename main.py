@@ -44,7 +44,7 @@ def detectar_ciclo(lista):
 
     return None
 
-@app.get("/Floyd-algorithm")
+@app.get("/floyd-algorithm")
 def floyd_algorithm():
 
     nodo1 = Nodo(1)
@@ -67,4 +67,21 @@ def floyd_algorithm():
 
 #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
 
-#@app.post("/BusquedaRepetidos"
+@app.get("/duplicados")
+def findDuplicate(nums):
+    tortoise = hare = nums[0]
+    while True:
+        tortoise = nums[tortoise]
+        hare = nums[nums[hare]]
+        if tortoise == hare:
+            break
+
+    hare = nums[0]
+    while tortoise != hare:
+        tortoise = nums[tortoise]
+        hare = nums[hare]
+
+    return hare
+
+numbers = [1, 3, 4, 2, 2]
+print(findDuplicate(numbers))  # This will print 2
