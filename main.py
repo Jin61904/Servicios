@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI
 import mook
 
@@ -65,10 +66,11 @@ def floyd_algorithm():
     else:
         return {"tiene_ciclo": False}
 
-#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
+#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
 
-@app.get("/duplicados")
-def findDuplicate(nums):
+
+@app.post("/Números-duplicados")
+def find_duplicate(nums: List[int]):
     tortoise = hare = nums[0]
     while True:
         tortoise = nums[tortoise]
@@ -81,7 +83,4 @@ def findDuplicate(nums):
         tortoise = nums[tortoise]
         hare = nums[hare]
 
-    return hare
-
-numbers = [1, 3, 4, 2, 2]
-print(findDuplicate(numbers))  # This will print 2
+    return {"duplicate": hare} # This will print 2
