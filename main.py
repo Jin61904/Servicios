@@ -3,6 +3,29 @@ import mook
 
 app = FastAPI()
 
+class Nodo():
+    def __init__(self, valor):
+        self.valor = valor
+        self.siguiente = None
+
+    def __repr__(self) -> str:
+        return f"<nodo {self.valor}>"
+
+def detectar_ciclo(lista):
+    class NodoInterno(Nodo):
+        pass
+
+    tortuga = lista
+    liebre = lista
+
+    while liebre and liebre.siguiente and tortuga:
+        tortuga = tortuga.siguiente
+        liebre = liebre.siguiente.siguiente
+
+        if tortuga == liebre:
+            return True
+
+    return False
 @app.get("/")
 def root():
     return{
@@ -23,96 +46,22 @@ def indices_invertidos(palabra: dict):
     return cache.get(palabra ["palabra"], "No se encontró")
 
 @app.post("/Floyd-algorithm")
+def floyd_algorithm():
 
-class Nodo():
-  def __init__(self, valor):
-    self.valor = valor
-    self.siguiente = None
+    nodo1 = Nodo(1)
+    nodo2 = Nodo(2)
+    nodo3 = Nodo(3)
+    nodo4 = Nodo(4)
+    nodo5 = Nodo(5)
 
-  def __repr__(self) -> str:
-    return f"<nodo {self.valor}>"
+    nodo1.siguiente = nodo2
+    nodo2.siguiente = nodo3
+    nodo3.siguiente = nodo4
+    nodo4.siguiente = nodo5
+    nodo5.siguiente = nodo2
 
-def detectar_ciclo(lista):
-  class NodoInterno(Nodo):
-    pass
+    tiene_ciclo = detectar_ciclo(nodo1)
+    return {"tiene_ciclo": tiene_ciclo}
 
-  tortuga = lista
-  liebre = lista
 
-  while liebre and liebre.siguiente and tortuga:
-    tortuga = tortuga.siguiente
-    liebre = liebre.siguiente.siguiente
-
-    if tortuga == liebre:
-      print(tortuga, liebre)
-      break
-
-  liebre = lista
-
-  while liebre != tortuga:
-    liebre = liebre.siguiente
-    tortuga = tortuga.siguiente
-    print(tortuga, liebre)
-
-  return False
-
-nodo1 = Nodo(1)
-nodo2 = Nodo(2)
-nodo3 = Nodo(3)
-nodo4 = Nodo(4)
-nodo5 = Nodo(5)
-
-nodo1.siguiente = nodo2
-nodo2.siguiente = nodo3
-nodo3.siguiente = nodo4
-nodo4.siguiente = nodo5
-nodo5.siguiente = nodo2
-
-detectar_ciclo(nodo1)
-class Nodo():
-  def __init__(self, valor):
-    self.valor = valor
-    self.siguiente = None
-
-  def __repr__(self) -> str:
-    return f"<nodo {self.valor}>"
-
-def detectar_ciclo(lista):
-  class NodoInterno(Nodo):
-    pass
-
-  tortuga = lista
-  liebre = lista
-
-  while liebre and liebre.siguiente and tortuga:
-    tortuga = tortuga.siguiente
-    liebre = liebre.siguiente.siguiente
-
-    if tortuga == liebre:
-      print(tortuga, liebre)
-      break
-
-  liebre = lista
-
-  while liebre != tortuga:
-    liebre = liebre.siguiente
-    tortuga = tortuga.siguiente
-    print(tortuga, liebre)
-
-  return False
-
-nodo1 = Nodo(1)
-nodo2 = Nodo(2)
-nodo3 = Nodo(3)
-nodo4 = Nodo(4)
-nodo5 = Nodo(5)
-
-nodo1.siguiente = nodo2
-nodo2.siguiente = nodo3
-nodo3.siguiente = nodo4
-nodo4.siguiente = nodo5
-nodo5.siguiente = nodo2
-
-detectar_ciclo(nodo1)
-
-#@app.post("/BusquedaRepetidos")
+#@app.post("/BusquedaRepetidos"
