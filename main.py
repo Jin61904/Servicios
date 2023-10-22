@@ -3,29 +3,6 @@ import mook
 
 app = FastAPI()
 
-class Nodo():
-    def __init__(self, valor):
-        self.valor = valor
-        self.siguiente = None
-
-    def __repr__(self) -> str:
-        return f"<nodo {self.valor}>"
-
-def detectar_ciclo(lista):
-    class NodoInterno(Nodo):
-        pass
-
-    tortuga = lista
-    liebre = lista
-
-    while liebre and liebre.siguiente and tortuga:
-        tortuga = tortuga.siguiente
-        liebre = liebre.siguiente.siguiente
-
-        if tortuga == liebre:
-            return True
-
-    return False
 @app.get("/")
 def root():
     return{
@@ -46,8 +23,30 @@ def indices_invertidos(palabra: dict):
     return cache.get(palabra ["palabra"], "No se encontró")
 
 @app.post("/Floyd-algorithm")
-def floyd_algorithm():
 
+class Nodo():
+    def __init__(self, valor):
+        self.valor = valor
+        self.siguiente = None
+
+    def __repr__(self) -> str:
+        return f"<nodo {self.valor}>"
+
+def detectar_ciclo(lista):
+    tortuga = lista
+    liebre = lista
+
+    while liebre and liebre.siguiente and tortuga:
+        tortuga = tortuga.siguiente
+        liebre = liebre.siguiente.siguiente
+
+        if tortuga == liebre:
+            return True
+
+    return False
+
+@app.post("/Floyd-algorithm")
+def floyd_algorithm():
     nodo1 = Nodo(1)
     nodo2 = Nodo(2)
     nodo3 = Nodo(3)
@@ -63,5 +62,6 @@ def floyd_algorithm():
     tiene_ciclo = detectar_ciclo(nodo1)
     return {"tiene_ciclo": tiene_ciclo}
 
+#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
 
 #@app.post("/BusquedaRepetidos"
