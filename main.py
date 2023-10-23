@@ -1,5 +1,6 @@
 from typing import List
 from fastapi import FastAPI
+from pydantic import BaseModel
 import mook
 
 app = FastAPI()
@@ -69,7 +70,10 @@ def floyd_algorithm():
 #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
 
 @app.post("/Números-duplicados")
-def find_duplicate(nums: List[int]):
+class Numbers(BaseModel):
+    nums:List[int]
+def find_duplicate(nums: Numbers):
+    nums=nums.nums
     tortoise = hare = nums[0]
     while True:
         tortoise = nums[tortoise]
