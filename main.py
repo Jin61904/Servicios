@@ -66,7 +66,7 @@ def floyd_algorithm():
     else:
         return {"tiene_ciclo": False}
 
-#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
+#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
 
 @app.post("/Números-duplicados")
 def find_duplicate(nums: List[int]):
