@@ -3,6 +3,18 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import mook
 
+class Numbers(BaseModel):
+    nums: List[int]
+
+class Nodo():
+    def __init__(self, valor):
+        self.valor = valor
+        self.siguiente = None
+
+    def __repr__(self) -> str:
+        return f"<nodo {self.valor}>"
+
+
 app = FastAPI()
 
 @app.get("/")
@@ -25,13 +37,6 @@ def indices_invertidos(palabra: dict):
     return cache.get(palabra ["palabra"], "No se encontró")
 
 
-class Nodo():
-    def __init__(self, valor):
-        self.valor = valor
-        self.siguiente = None
-
-    def __repr__(self) -> str:
-        return f"<nodo {self.valor}>"
 
 def detectar_ciclo(lista):
     tortuga = lista
@@ -67,13 +72,11 @@ def floyd_algorithm():
     else:
         return {"tiene_ciclo": False}
 
-#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
+#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
 
 @app.post("/Números-duplicados")
-class Numbers(BaseModel):
-    nums:List[int]
 def find_duplicate(nums: Numbers):
-    nums=nums.nums
+    nums = nums.nums
     tortoise = hare = nums[0]
     while True:
         tortoise = nums[tortoise]
