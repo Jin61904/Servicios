@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import mook
 
-<<<<<<< HEAD
+
 import boto3
 
 aws_access_key_id = 'AKIAXII2BKO7PPH2CJMQ'
@@ -15,7 +15,7 @@ sqs = boto3.client(
     aws_access_key_id=aws_access_key_id,
     aws_secret_access_key=aws_secret_access_key
 )
-queue_url = 'https://sqs.us-east-1.amazonaws.com/498807690174/banco2'
+queue_url = 'https://sqs.us-east-1.amazonaws.com/498807690174/transacciones_bancos'
 
 
 class Numbers(BaseModel):
