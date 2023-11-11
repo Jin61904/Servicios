@@ -115,7 +115,7 @@ def procces():
         MessageAttributeNames=[
             'All'
         ],
-        MaxNumberOfMessages=10,  # Ajusta este valor según tus necesidades
+        MaxNumberOfMessages=1000,  # Ajusta este valor según tus necesidades
         VisibilityTimeout=30,
         WaitTimeSeconds=0
     )
