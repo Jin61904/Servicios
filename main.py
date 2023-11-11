@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import mook
 
+<<<<<<< HEAD
 import boto3
 
 aws_access_key_id = 'AKIAXII2BKO7PPH2CJMQ'
@@ -15,6 +16,7 @@ sqs = boto3.client(
     aws_secret_access_key=aws_secret_access_key
 )
 queue_url = 'https://sqs.us-east-1.amazonaws.com/498807690174/banco2'
+
 
 class Numbers(BaseModel):
     nums: List[int]
@@ -102,6 +104,7 @@ def find_duplicate(nums: Numbers):
         tortoise = nums[tortoise]
         hare = nums[hare]
 
+
     return {"duplicate": hare}
 
 
@@ -133,3 +136,4 @@ def procces():
         print("No se encontraron mensajes en la cola.")
 
     sqs.close()
+
